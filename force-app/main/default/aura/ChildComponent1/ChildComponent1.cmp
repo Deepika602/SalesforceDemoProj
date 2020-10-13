@@ -1,0 +1,9 @@
+<aura:component controller="ChildComponentController">
+    <!-- Component Event REgister -->
+    <aura:registerEvent name="compEvntDemo" type="c:ComponentEventDemo"/>
+	
+    <lightning:button label="Get Branches" onclick="{!c.getBranchesBtnClicked}"/>
+    
+    
+<aura:handler event="c:ApplicationEventDemo" action="{!c.appEventDemoHandler}"/>
+</aura:component>

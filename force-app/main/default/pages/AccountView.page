@@ -1,0 +1,69 @@
+<apex:page standardController="Account" showHeader="false" sidebar="false" extensions="AccountViewExtensionController">
+  <apex:form >
+   <div width="70%" align="center">
+        Name: <apex:inputField value="{!Account.Name}"/>
+        Type: <apex:inputField value="{!Account.Type}"/>
+        Rating: <apex:outputField value="{!Account.Rating}"/>
+    
+        </div>
+        
+        <apex:commandButton value="Submit" action="{!save}"/>
+
+   <apex:outputPanel rendered="{!isView}">
+            <apex:pageBlock title="Account Detail" mode="view">
+                <apex:pageBlockButtons location="top">  
+                   <apex:commandButton value="Edit" action="{!editClicked}"/>
+    
+                    <apex:commandButton value="Delete" action="{!delete}"/>
+                </apex:pageBlockButtons>
+                <apex:pageBlockSection columns="2" collapsible="false" title="Detail">
+                    <apex:outputField value="{!Account.Name}"/>
+                    <apex:outputField value="{!Account.Rating}"/>
+                    <apex:outputField value="{!Account.Type}"/>
+                </apex:pageBlockSection>
+                
+                 <apex:pageBlockSection columns="2" collapsible="true" title="Billing Address">
+                    <apex:outputField value="{!Account.BillingStreet}"/>
+                    <apex:outputField value="{!Account.BillingState}"/>
+                    <apex:outputField value="{!Account.BillingCity}"/>
+                </apex:pageBlockSection>     
+            </apex:pageBlock>
+            
+            <apex:pageBlock title="Contacts">
+                <apex:pageBlockTable value="{!Account.contacts}" var="con">
+                    <apex:column value="{!con.FirstName}"/>
+                    <apex:column value="{!con.LastName}"/>
+                </apex:pageBlockTable>
+            </apex:pageBlock>    
+        </apex:outputPanel> 
+        
+        <apex:outputPanel rendered="{! isEdit}">
+            <apex:pageBlock title="Account Edit" mode="edit">
+                <apex:pageBlockButtons location="top">
+                 
+                    <apex:commandButton value="Save" action="{!save}"/>
+                    <apex:commandButton value="Cancel" action="{!cancel}"/>
+                </apex:pageBlockButtons>
+                <apex:pageBlockSection columns="2" collapsible="false" title="Detail">
+                    <apex:outputField value="{!Account.Name}"/>
+                    <apex:outputField value="{!Account.Rating}"/>
+                    <apex:outputField value="{!Account.Type}"/>
+                </apex:pageBlockSection>
+                
+                 <apex:pageBlockSection columns="2" collapsible="true" title="Billing Address">
+                    <apex:outputField value="{!Account.BillingStreet}"/>
+                    <apex:outputField value="{!Account.BillingState}"/>
+                    <apex:outputField value="{!Account.BillingCity}"/>
+                </apex:pageBlockSection>     
+            </apex:pageBlock>
+            
+            <apex:pageBlock title="Contacts">
+                <apex:pageBlockTable value="{!Account.contacts}" var="con">
+                    <apex:column value="{!con.FirstName}"/>
+                    <apex:column value="{!con.LastName}"/>
+                </apex:pageBlockTable>
+            </apex:pageBlock>    
+        </apex:outputPanel>        
+  
+  </apex:form>
+</apex:page>

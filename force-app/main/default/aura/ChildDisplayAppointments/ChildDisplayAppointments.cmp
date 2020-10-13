@@ -1,0 +1,35 @@
+<aura:component controller="DisplayPatAppController" 
+                implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<aura:attribute name="patient" type="String" access="global" description=""/>
+   <aura:attribute name="isShow" type="boolean" default="false"/>
+     <aura:attribute name="isShow2" type="boolean" default="false"/>
+    
+    <aura:method name="displayAppointments" action="{!c.apptDisplay}" access="global">
+         <aura:attribute name="ptId" type="Id" default=""/>        
+    </aura:method>
+    
+    <aura:attribute name="AppointmentList" type="Appoitment__c"/>
+   
+    
+    <!--<aura:handler name="init" value="{!this}" action="{!c.apptDisplay}"/>-->
+   
+   <!--<aura:if isTrue="{!v.isShow1}">-->
+    <table border="1" class="tableCls"> 
+        <thead>
+            <tr style="height:30px;">
+                <td>Appiointment Id</td>
+                <td>Appiointment Name</td>   
+            </tr>
+        </thead>
+        <tbody>
+            <aura:iteration items="{!v.AppointmentList}" var="appointment">
+            	<tr style="height:30px;">
+                    <td>{!appointment.Id}</td>
+                    <td>{!appointment.Name}</td>
+              
+                </tr>
+            </aura:iteration>
+        </tbody>
+    </table>
+   
+</aura:component>

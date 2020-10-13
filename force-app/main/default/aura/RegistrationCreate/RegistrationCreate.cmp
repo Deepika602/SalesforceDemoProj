@@ -1,0 +1,16 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="isShow1" type="boolean" default="false"/>
+    <aura:method name="SubmitRegistration" action="{!c.SubmitRegistrationClicked}" access="global">
+        <aura:attribute name="RegName" type="String" default=""/>
+         <aura:attribute name="RegId" type="String" default=""/>
+        
+    </aura:method>
+        
+        
+    <aura:if isTrue="{!v.isShow1}">
+            child Component
+<lightning:button label="cancel" onclick="{!c.cancelClicled}"/>
+
+    </aura:if>
+	
+</aura:component>

@@ -1,0 +1,19 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<aura:attribute name="accFields" type="List" default="['Name','Type','Rating']"/>
+    <aura:attribute name="recordId" type="Id" default="0013t00001ZqMGAAA3"/>
+    
+     <!-- Error Messages -->
+    <lightning:messages/>
+    <!--<lightning:recordForm objectApiName="Account" layoutType="Full" />-->
+    <lightning:recordForm objectApiName="Account" fields="{!v.accFields}" onsuccess="{!c.successMethod}"/>
+ <lightning:recordForm objectApiName="Account" recordId="{!v.recordId}" fields="{!v.accFields}" mode="view"/>
+    <lightning:recordForm objectApiName="Account" recordId="{!v.recordId}" fields="{!v.accFields}" mode="readonly"/> 
+    <lightning:recordForm objectApiName="Account" recordId="{!v.recordId}" fields="{!v.accFields}" mode="edit" onsuccess="{!c.successMethod}"/>
+    
+    <lightning:recordEditForm objectApiName="Account" recordId="{!v.recordId}">
+        <lightning:inputField fieldName="Name"/>
+        <lightning:outputField fieldName="Rating"/>
+        <lightning:button  type="submit" label="Submit"/>
+    </lightning:recordEditForm>
+    <!--<lightning:recordViewForm objectApiName="Account" recordId="{!v.recordId}"/>-->
+</aura:component>

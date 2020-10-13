@@ -1,0 +1,13 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    
+     <aura:attribute name="isShow" type="boolean" default="false"/>
+    <lightning:button label="Create Registration" onclick="{!c.createRegClicled}"/>
+
+    <!--<aura:if isTrue="{!v.isShow}">
+    
+        <c:RegistrationCreate/>
+    </aura:if>-->
+    {!v.isShow}
+     <c:RegistrationCreate isShow1="{!v.isShow}" aura:id="regCreateComp"/>
+    <lightning:button label="callsubmit Reg method" onclick="{!c.callSubmitRegMethod}"/>
+</aura:component>

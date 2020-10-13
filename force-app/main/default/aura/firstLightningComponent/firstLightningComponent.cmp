@@ -1,0 +1,54 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="accName" type="String" default="kaiser" access="global" description=""/>
+    <aura:attribute name="activationDate" type="Date"  access="global" description=""/>
+    <aura:attribute name="SecurityCode" type="string"  access="global" description=""/>
+     <aura:attribute name="ratingList" type="List"  access="global" default="Hot,Warm,Cold"/>
+    <aura:attribute name="rating" type="string"  access="global" description=""/>
+    
+   <aura:handler name="init" value="{!this}" action="{!c.initMethodOnLoad}"/>
+     <aura:handler name="change" value="{!v.rating}" action="{!c.onChangeRating}"/>
+    <aura:attribute name="typeList" type="List"  access="global"
+                    default="[
+                             {label:'Customer',value:'Customer'},
+                             {label:'Customer-Direct',value:'Customer-Direct'},
+                             {label:'Prospect',value:'Prospect'}
+                             ]"/>
+    
+     <aura:attribute name="selectedTypes" type="List"  access="global"
+                   default="['Customer']" />
+    Account Name: {!v.accName}-{!v.rating}
+    <div width="70%" align="center" style="padding-left:30px;padding-right:30px">
+    <lightning:input aura:id="Account Name" type="text" value="{!v.accName}"/>
+        <lightning:input type="Date" label="activationDate" value="{!v.activationDate}"/>
+        <lightning:input type="password" label="SecurityCode" value="{!v.SecurityCode}"/>
+         <lightning:input type="checkbox" label="Active" value="{!v.active}" disabled="{!or(v.accName=='kaiser',v.accName=='Rainbow')}"/>
+         <lightning:select label="Rating" value="{!v.rating}">
+        
+        <option value="">select</option>
+            <aura:iteration items="{!v.ratingList}" var="r">
+                <option value="{!r}">{!r}</option>
+             </aura:iteration>
+        </lightning:select>
+        <lightning:dualListbox label="Type" sourceLabel="Available Types"
+                               selectedLabel="selected Types" options="{!v.typeList}"
+                               value="{!v.selectedTypes}"/>
+        </div>
+    <aura:if isTrue="{!v.selectedTypes.length>0}">
+    selected values
+      <aura:iteration items="{!v.selectedTypes}" var="r">
+                <option value="{!r}">{!r}</option>
+             </aura:iteration>
+    <aura:set attribute="else">
+        <aura:if isTrue="">
+        
+        <aura:set attribute="else">
+            </aura:set>
+        
+        </aura:if>
+        
+        
+        </aura:set>
+    </aura:if>
+    <lightning:button label="Submit" variant="neutral" onclick="{!c.submitButtonClicked}"/>
+    
+</aura:component>

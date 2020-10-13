@@ -1,0 +1,5 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<aura:attribute name="recordId" type="Id" default="0013t00001ZqMGAAA3"/>
+    <lightning:fileUpload name="fileUpload" label="Attach File" recordId="{!v.recordId}" accept="['.xml']"
+                          onuploadfinished="{!c.finshUpload}"/>
+</aura:component>

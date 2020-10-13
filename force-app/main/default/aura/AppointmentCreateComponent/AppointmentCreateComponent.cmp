@@ -1,0 +1,46 @@
+<aura:component controller="DisplayPatPhysHospitalController" 
+                implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    <aura:attribute name="Name" type="String" default="" access="global" description=""/>
+	<aura:attribute name="patList" type="List" access="global"/>
+    
+     <aura:attribute name="phyList" type="List"/>
+     <aura:attribute name="hosList" type="List"/>
+    <aura:attribute name="Patient" type="Id" access="global" description=""/>
+    <aura:attribute name="Physician" type="Id" access="global" description=""/>
+    <aura:attribute name="Hospital" type="Id" access="global" description=""/>
+    
+    <aura:attribute name="app" type="Appoitment__c" default="{'sobjectType': 'Appoitment__c'}"/>
+                                                    
+                                                    
+    
+    <aura:handler name="init" value="{!this}" action="{!c.initMethodOnLoad}"/>
+    
+    <aura:handler name="change" value="{!v.Patient}" action="{!c.onChangePatient}"/>
+    <aura:handler name="change" value="{!v.Physician}" action="{!c.onChangePhysician}"/>
+    <aura:handler name="change" value="{!v.Hospital}" action="{!c.onChangeHospital}"/>
+    
+   <lightning:button label="Submit" onclick="{!c.AppoitmentSubmit}" />
+    <lightning:input aura:id="Appoitment Name" Label="Appoitment Name" type="text" value="{!v.app.Name}"/>
+    <lightning:select aura:id="Patient" label="Patient" name="Patient" class="dynamic" value="{!v.Patient}" onchange="{!c.onChangePatient}">
+        <option value="">select</option>
+            <aura:iteration items="{!v.patList}" var="pat">
+                <option text="{!pat.Name}" value="{!pat.Id}"/>
+             </aura:iteration>
+    </lightning:select>
+    
+    <lightning:select aura:id="Physician" label="Physician" name="Physician" class="dynamic" value="{!v.Physician}" onchange="{!c.onChangePhysician}" >
+        
+        <option value="">select</option>
+            <aura:iteration items="{!v.phyList}" var="phy">
+                <option text="{!phy.Name}" value="{!phy.Id}"/>
+             </aura:iteration>
+        </lightning:select>
+    
+    <lightning:select aura:id="Hospital" label="Hospital" value="{!v.Hospital}" class="dynamic" onchange="{!c.onChangeHospital}">
+        
+        <option value="">select</option>
+            <aura:iteration items="{!v.hosList}" var="hos">
+                 <option text="{!hos.Name}" value="{!hos.Id}"/>
+             </aura:iteration>
+        </lightning:select>
+</aura:component>

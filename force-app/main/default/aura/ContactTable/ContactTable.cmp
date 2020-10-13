@@ -1,0 +1,46 @@
+<aura:component controller="ContactTableListController"
+                implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    
+    <aura:attribute name="conList" type="List"/>
+    <aura:attribute name="isShow" type="boolean"/>
+  <aura:attribute name="pageSizeList" type="List"  access="global" default="5,10,20,50"/>
+  <aura:attribute name="pageSize" type="String" default=""/>
+     <lightning:select label="PageSize" value="{!v.pageSize}">
+        
+        <option value="">select</option>
+            <aura:iteration items="{!v.pageSizeList}" var="r">
+                <option value="{!r}">{!r}</option>
+             </aura:iteration>
+        </lightning:select>
+    
+    <aura:attribute name="headersList" type="List"/>
+    <aura:attribute name="selectedContacts" type="List"/>
+    
+     
+    <aura:attribute name="pageNumber" type="String" default="1"/>
+    <aura:attribute name="conListTemp" type="List"/>
+    
+     <aura:attribute name="sortField" type="String" default="Name"/>
+    <aura:attribute name="sortOrder" type="String" default="desc"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="change" value="{!v.pageSize}" action="{!c.onChangePageSize}"/>
+    
+    
+    <lightning:button label="Previous" onclick="{!c.btnClicked}" disabled="{!v.pageNumber == 1}"/>
+    <lightning:button label="Next" onclick="{!c.NextClicked}" disabled="{!!v.conList.length > 5}"/>
+     {!v.conListTemp.length}
+
+    
+    
+    <!--<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>-->
+    <lightning:dataTable data="{!v.conListTemp}" columns="{!v.headersList}" keyField="Id"
+                               hideCheckboxColumn="false" 
+                               maxRowSelection="5" 
+                               onrowselection="{!c.onRowSelected}"
+                               sortBy="{!v.sortField}"
+                               sortDirection="{!v.sortOrder}"
+                               onsort="{!c.sortData}"/>
+    <lightning:button label="Get Selected Records" onclick="{!c.btnClicked}"/>
+       
+</aura:component>

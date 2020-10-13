@@ -1,0 +1,66 @@
+<apex:page showHeader="false" sidebar="false"  controller="RegistrationViewCustomController">
+
+ <apex:form >
+ <apex:outputPanel rendered="{!isNew}">
+ <br>
+  Name: <apex:inputField value="{!regis.Name}"/>
+  DOB : <apex:inputField value="{!regis.DOB__c}"/>
+  AppointmentDate : <apex:inputField value="{!regis.AppointmentDate__c}"/>
+  </br>
+ <apex:selectList multiselect="false" size="1" value="{!selectedHospital}">
+  <apex:selectOptions value="{!hospitallist}"/>
+  <apex:actionSupport event="onchange" action="{!hospitalChange}"/>
+  </apex:selectList>
+   <apex:selectList multiselect="false" size="1" value="{!selectedBranch}">
+  <apex:selectOptions value="{!branchList}"/>
+  </apex:selectList>
+  
+  <apex:selectList multiselect="false" size="1" value="{!selectedPhysician}">
+  <apex:selectOptions value="{!physicianList}"/>
+  </apex:selectList>
+  <apex:commandButton value="New" action="{!newClicked}" rendered="{!isNewButton}"/>
+  </apex:outputPanel>
+ <apex:outputPanel rendered="{!isView}">
+            <apex:pageBlock title="Registration Detail" mode="view">
+                <apex:pageBlockButtons location="top">  
+                   <apex:commandButton value="Edit" action="{!editClicked}"/>
+    
+                    <apex:commandButton value="Delete" action="{!deleteClicked}"/>
+                </apex:pageBlockButtons>
+                <apex:pageBlockSection columns="2" collapsible="false" title="Detail">
+                    <apex:outputField value="{!regis.Name}"/>
+                    <apex:outputField value="{!regis.DOB__c}"/>
+                    <apex:outputField value="{!regis.AppointmentDate__c}"/>
+                
+                    <apex:outputField value="{!regis.Hospital__c}"/>
+                    <apex:outputField value="{!regis.Branch__c}"/>
+                    <apex:outputField value="{!regis.Physician__c}"/>
+                </apex:pageBlockSection>     
+            </apex:pageBlock>
+            
+           
+        </apex:outputPanel> 
+        
+        <apex:outputPanel rendered="{!isEdit}">
+            <apex:pageBlock title="Registration Edit" mode="edit">
+                <apex:pageBlockButtons location="top">
+                 
+                    <apex:commandButton value="Save" action="{!saveClicked}"/>
+                    <apex:commandButton value="Cancel" action="{!cancelClicked}"/>
+                </apex:pageBlockButtons>
+                <apex:pageBlockSection columns="2" collapsible="false" title="Detail">
+                    <apex:outputField value="{!regis.Name}"/>
+                    <apex:outputField value="{!regis.DOB__c}"/>
+                    <apex:outputField value="{!regis.AppointmentDate__c}"/>
+                
+                    <apex:outputField value="{!regis.Hospital__c}"/>
+                    <apex:outputField value="{!regis.Branch__c}"/>
+                    <apex:outputField value="{!regis.Physician__c}"/>
+                </apex:pageBlockSection>        
+            </apex:pageBlock>
+            
+           
+        </apex:outputPanel>        
+  
+ </apex:form>
+</apex:page>

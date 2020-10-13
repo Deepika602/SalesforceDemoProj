@@ -1,0 +1,8 @@
+<aura:component>
+   <aura:attribute name="name" type="String"/>
+    <aura:attribute name="branchList" type="List"/>
+    <aura:handler name="compEvntDemo" event="c:ComponentEventDemo" action="{!c.eventExecutedMethod}"/>
+    <c:ChildComponent1 />
+ <c:ChildComponent2 />
+
+</aura:component>

@@ -1,0 +1,58 @@
+<apex:page showHeader="false" sidebar="false" docType="html-5.0" controller="firstVFPageController" action="{!doInit}">
+<script>
+function getJavascriptMethod()
+{
+alert('hi');
+
+return true;
+}
+</script>
+
+<style>
+.labelCls
+{
+      color:red;
+}
+</style>
+  
+  <h1>Congratulations</h1>
+ 
+  
+  <apex:form >
+  Name <apex:inputText value="{!name}"/>
+  <apex:commandButton value="Submit" onclick="getJavascriptMethod();" action="{!submitClicked}"/>
+  <br>
+ // {!outputname}
+  </br>
+   <apex:selectList multiselect="false" size="1">
+  <apex:selectOptions value="{!stateList}"/>
+  </apex:selectList>
+  <br>
+  {!outputname}
+  </br>
+  <apex:selectList multiselect="false" size="1">
+  <apex:selectOptions value="{!contactlist}"/>
+  </apex:selectList>
+   <apex:selectList multiselect="false" size="1" value="{!selectedRating}">
+  <apex:selectOptions value="{!ratingList}"/>
+  </apex:selectList>
+  
+  <apex:selectList multiselect="false" size="1">
+  <apex:selectOptions value="{!typeList}"/>
+  </apex:selectList>
+  <apex:inputTextarea />
+  <apex:inputCheckbox />
+  <apex:selectList multiselect="false" size="1" value="{!selectedValue}">
+  <apex:selectOption itemValue="Telangana" itemLabel="TS"/>
+  <apex:selectOption itemValue="AndhraPradesh" itemLabel="AP"/>
+  </apex:selectList>
+  
+  
+  <apex:commandLink value="clickhere"/>
+  
+  <apex:input type="text"/>
+  
+  <apex:outputLabel styleClass="labelCls">Output Label</apex:outputLabel>
+  
+  </apex:form>
+</apex:page>

@@ -1,0 +1,31 @@
+<apex:page showHeader="false" sidebar="false" controller="RegistrationPatientViewCustomController">
+  <apex:form >
+  <apex:outputPanel >
+    <apex:pageBlock title="Registrations">
+    <apex:pageBlockButtons location="top">
+                <apex:commandButton value="Invite" action="{!processSelected}" rerender="table2"/>
+            </apex:pageBlockButtons>
+    
+               <apex:pageBlockTable value="{!wrapRegistrationList}" var="regWrap" id="table" title="Registrations">
+                    <apex:column >
+                       <apex:inputCheckbox value="{!regWrap.selected}" id="inputId"/>
+                    </apex:column>
+                    <apex:column value="{!regWrap.regis.Id}" />
+                    <apex:column value="{!regWrap.regis.Name}" />
+                    </apex:pageBlockTable>
+             </apex:pageBlock>
+            </apex:outputPanel> 
+             <apex:outputPanel id="table2">
+             <apex:pageBlock title="Patients">       
+                    <apex:pageBlockTable value="{!patLst}" var="c" title="Patients">
+                    <apex:column value="{!c.Name}" headerValue="Name"/>
+                    <apex:column value="{!c.Age__c}" headerValue="Age"/>
+                   
+                    <apex:column value="{!c.Registration__c}" headerValue="Registration"/>
+                </apex:pageBlockTable>
+ 
+           </apex:pageBlock>
+           </apex:outputPanel>          
+                    
+  </apex:form>
+</apex:page>

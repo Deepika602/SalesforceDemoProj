@@ -1,0 +1,27 @@
+<aura:component controller="DisplayBranchListViewController"
+                implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="branchLst" type="Branch__c"/>
+     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <table> 
+        <thead>
+            <tr style="height:30px;">
+                <td>Branch Name</td>
+                <td>Branch Code</td>
+                <td>Hospital</td>
+                <td>Branch Head</td>   
+            </tr>
+        </thead>
+        <tbody>
+            <aura:iteration items="{!v.branchList}" var="branch">
+            	<tr style="height:30px;">
+                    <td>{!branch.Name}</td>
+                    <td>{!branch.BranchCode__c}</td>
+                    <td>{!branch.Hospital__r.Name}</td>
+                    <td>{!branch.BranchHead__r.Name}</td>   
+                </tr>
+            </aura:iteration>
+        </tbody>
+    </table>
+
+</aura:component>
